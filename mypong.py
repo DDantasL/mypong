@@ -2,6 +2,7 @@ import tkinter
 import turtle
 import os
 import time
+import sys 
 
 # desenhar tela
 screen = turtle.Screen()
@@ -112,8 +113,9 @@ def paddle_2_down():
 screen.listen()
 screen.onkeypress(paddle_1_up,"w")
 screen.onkeypress(paddle_1_down,"s")
-screen.onkeypress(paddle_2_up,"Up")
-screen.onkeypress(paddle_2_down,"Down")
+if len(sys.argv) == 1:
+    screen.onkeypress(paddle_2_up,"Up")
+    screen.onkeypress(paddle_2_down,"Down")
 
 
 
@@ -127,13 +129,13 @@ while True:
 
     #colisão com parede superior
     if ball.ycor() > 290:
-        os.system("play bounce.wav&")
+        os.system("aplay bounce.wav&")
         ball.sety(290)
         ball.dy *= -1
     
     #colisão com parede inferior
     if ball.ycor() < -280:
-        os.system("play bounce.wav&")
+        os.system("aplay bounce.wav&")
         ball.sety(-280)
         ball.dy *= -1
 
@@ -142,7 +144,7 @@ while True:
         score_2 += 1
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P",24,"normal") )
-        os.system("play 258020__kodack__arcade-bleep-sound.wav&")
+        os.system("aplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
     
@@ -151,7 +153,7 @@ while True:
         score_1 += 1
         hud.clear()
         hud.write("{} : {}".format(score_1, score_2), align="center", font=("Press Start 2P",24,"normal") )
-        os.system("play 258020__kodack__arcade-bleep-sound.wav&")
+        os.system("aplay 258020__kodack__arcade-bleep-sound.wav&")
         ball.goto(0,0)
         ball.dx *= -1
 
@@ -160,13 +162,13 @@ while True:
     if ball.xcor() < -330 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
         ball.setx(-330)
         ball.dx *= -1     
-        os.system("play bounce.wav&")   
+        os.system("aplay bounce.wav&")   
     
     # colisão com raquete 2
     if ball.xcor() > 330 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
         ball.dx *= -1
         ball.setx(330)
-        os.system("play bounce.wav&")
+        os.system("aplay bounce.wav&")
 
     # score 
 
@@ -174,4 +176,11 @@ while True:
         ball.setx(0)
         ball.sety(0)
 
+    # modo 1sp
+    if len(sys.argv) == 2:
+        if sys.argv[1] == "-1": 
+            paddle_2.sety(ball.ycor())
     
+
+    
+
