@@ -12,7 +12,6 @@ screen.setup(width=800, height=600)
 screen.tracer(0)
 
 # linha
-
 linha = turtle.Turtle()
 linha.shape("square")
 linha.color("white")
@@ -113,14 +112,29 @@ def paddle_2_down():
         y = -250
     paddle_2.sety(y)
 
+
+def enter():
+    telav.clear()
+    score_1 = 0
+    score_2 = 0
+
 # mapeando as teclas
 screen.listen()
+screen.onkeypress(enter, "Return")
 screen.onkeypress(paddle_1_up, "w")
 screen.onkeypress(paddle_1_down, "s")
 if len(sys.argv) == 1:
     screen.onkeypress(paddle_2_up, "Up")
     screen.onkeypress(paddle_2_down, "Down")
 
+telav = turtle.Turtle()
+telav.speed(0)
+telav.shape("square")
+telav.color("white")
+telav.shapesize(stretch_wid=5, stretch_len=1)
+telav.penup()
+telav.goto(0, 0)
+telav.hideturtle()
 
 while True:
     screen.update()
@@ -176,10 +190,15 @@ while True:
         os.system("aplay bounce.wav&")
 
     # score
-
     if score_1 == 5 or score_2 == 5:
         ball.setx(0)
         ball.sety(0)
+        if score_1 == 5:
+            player = 1
+        else:
+            player = 2
+        telav.write("VITÓRIA PLAYER {}".format(player), align="center",
+                    font=("Press Start 2P", 24, "normal"))
 
     # modo 1sp
     if len(sys.argv) == 2:
