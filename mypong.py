@@ -113,14 +113,8 @@ def paddle_2_down():
     paddle_2.sety(y)
 
 
-def enter():
-    telav.clear()
-    score_1 = 0
-    score_2 = 0
-
 # mapeando as teclas
 screen.listen()
-screen.onkeypress(enter, "Return")
 screen.onkeypress(paddle_1_up, "w")
 screen.onkeypress(paddle_1_down, "s")
 if len(sys.argv) == 1:
