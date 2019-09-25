@@ -1,3 +1,7 @@
+Daniely Dantas Lobato ddl.snf18@uea.edu.br
+
+
+
 # MyPong - https://github.com/jucimarjr/mypong
 # pong em turtle python https://docs.python.org/3.3/library/turtle.html
 # baseado em http://christianthompson.com/node/51
